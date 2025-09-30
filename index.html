@@ -3,172 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataDash Express: Instant AI Data Analysis</title>
+    <title>DataDash Express: Pay-As-You-Go Hyper-Speed Analysis</title>
     <style>
+        /* --- CORE STYLES (Slight shift to Blue/Green for speed) --- */
         :root {
-            --primary-color: #007bff; /* Blue */
-            --background-color: #f8f9fa; /* Light Gray */
-            --card-bg: #ffffff;
-            --text-color: #343a40;
+            --bg-color: #0d1117; 
+            --text-color: #ffffff;
+            --primary-accent: #00bcd4; /* Bright Aqua/Cyan - Speed Focus */
+            --secondary-accent: #4caf50; /* Green - For efficiency/ROI */
+            --highlight-cta: #ff9800; /* Orange/Yellow - High contrast for action */
+            --card-bg: #161b22; 
+            --border-color: #30363d;
+            --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: var(--background-color);
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            text-align: center;
+            line-height: 1.6;
+            /* Subtle background for "speed/efficiency" look */
+            background-image: radial-gradient(at 0% 100%, rgba(0, 188, 212, 0.1) 0%, transparent 50%),
+                              radial-gradient(at 100% 0%, rgba(76, 175, 80, 0.08) 0%, transparent 60%);
+            background-attachment: fixed;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
+
+        /* --- Global Sections & Typography --- */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 50px;
+            color: var(--primary-accent);
+            text-align: center;
+        }
+
+        /* --- Header & Navigation --- */
         header {
-            background-color: var(--card-bg);
             padding: 20px 0;
-            border-bottom: 3px solid var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        header h1 {
-            color: var(--primary-color);
-            margin: 0;
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-accent);
+            text-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
         }
-        .pitch {
-            padding: 50px 20px;
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 30px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: color 0.3s, background-color 0.3s;
         }
-        .pitch h2 {
-            font-size: 2.5em;
-            color: #28a745; /* Green for profit */
+        .nav a:hover {
+            color: var(--primary-accent);
+            background-color: var(--border-color);
         }
-        .pitch p {
-            font-size: 1.2em;
-            color: #6c757d;
+        .nav .external-link {
+            border: 1px solid var(--secondary-accent);
         }
+        
+        /* --- Hero Section --- */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.8em;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+        .hero h1 strong {
+            color: var(--primary-accent);
+        }
+        .hero .trust-line {
+            font-size: 1.1em;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        .free-sample-cta {
+            background-color: var(--secondary-accent);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .free-sample-cta:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+        .sample-text {
+            color: var(--primary-accent);
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        /* --- Pricing Grid (Simplified for Volume) --- */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 40px;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns for main tiers */
+            gap: 25px;
+            max-width: 1000px; /* Center and constrain for focus */
+            margin: 0 auto;
         }
-        .card {
+        .pricing-card {
             background-color: var(--card-bg);
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        .card h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-        }
-        .price {
+        .price-display {
             font-size: 2.5em;
+            font-weight: 700;
+            color: var(--highlight-cta); /* Orange for immediate transaction */
+            margin: 10px 0 20px;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            flex-grow: 1;
+        }
+        .features-list li {
+            padding: 6px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 0.95em;
+            text-align: left;
+        }
+        .features-list li::before {
+            content: '»';
+            color: var(--primary-accent);
             font-weight: bold;
-            color: var(--text-color);
-            margin: 10px 0;
+            margin-right: 8px;
         }
-        .details {
-            font-size: 0.9em;
-            color: #6c757d;
-        }
-        .cta-button {
+        
+        /* --- CTA Button Styles --- */
+        .urgency-cta {
             display: block;
-            background-color: #dc3545; /* Red for Urgency/Action */
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+        }
+        .btn-priority {
+            background-color: var(--primary-accent); 
+            color: var(--bg-color);
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.4);
+        }
+        .btn-rush {
+            background-color: var(--secondary-accent); 
             color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-weight: bold;
-            transition: background-color 0.3s;
         }
-        .cta-button:hover {
-            background-color: #c82333;
+        .btn-standard {
+            background-color: var(--card-bg);
+            color: #aaa;
+            border: 1px solid var(--border-color);
         }
-        .best-value {
-            background-color: #ffc107; /* Yellow highlight */
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+
+        /* --- Footer & Contact --- */
         footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            border-top: 1px solid #dee2e6;
-            font-size: 0.8em;
-            color: #6c757d;
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
         }
-        .nav-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-        }
+        footer p { margin: 5px 0; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>DataDash Express ${}^{\text{TM}}$</h1>
-            <p>A "Better Option Than a Freelancer Forever" Service</p>
+            <div class="logo">DataDash Express ${}^{\text{TM}}$</div>
+            <nav class="nav">
+                <a href="#pricing">Pricing Slabs</a>
+                <a href="#about">About</a>
+                <a href="index.html" class="external-link">Go to Apex Data (Strategic)</a>
+            </nav>
         </header>
 
-        <nav style="padding: 10px 0;">
-            <a href="apex-strategic.html" class="nav-link">Go to Apex Strategic (High Volume)</a>
-        </nav>
-
-        <section class="pitch">
-            <h2>🔥 Need Answers NOW? Stop Waiting Days for Data.</h2>
-            <p>Our fully automated, Gemini-powered engine delivers guaranteed data analysis in as little as **30 minutes**, not 3 days. Pay only when you need it.</p>
+        <section class="hero">
+            <h1>**PAY-AS-YOU-GO HYPER-SPEED** DATA ANALYSIS</h1>
+            <p>Get **Automated Insights** in Minutes. No Contracts. No Waiting. **Better Than a Freelancer** for Volume.</p>
+            
+            <a href="[FREE_SAMPLE_WEBHOOK_OR_FORM]" class="free-sample-cta">🚀 GET STARTER REPORT NOW (30 MIN)</a>
+            <p class="sample-text">Limited free samples per month — reserve yours today.</p>
         </section>
 
-        <section class="pricing">
-            <h2>PAY-PER-SERVICE: YOUR URGENCY TIERS</h2>
-            <p class="details">All jobs run on our highly optimized E2-Medium infrastructure for speed.</p>
+        <section id="pricing" class="pricing-section">
+            <h2>SPEED SLABS: SIMPLE, FAST, AND AFFORDABLE</h2>
             
             <div class="pricing-grid">
-                
-                <div class="card">
-                    <div class="best-value">MOST POPULAR FIRST BUY</div>
-                    <h3>Starter Tier (500 Rows)</h3>
-                    <p class="details">Quick check-ups or single report runs.</p>
-                    <div class="price">$249</div>
-                    <p class="details">**Priority SLA: 30 Minutes Guaranteed**</p>
-                    <a href="[STRIPE_LINK_500_30MIN]" class="cta-button">BUY NOW (30 MIN)</a>
-                    <p class="details" style="margin-top: 15px;">Or **\$125** for 24-Hour Delivery</p>
+
+                <div class="pricing-card">
+                    <h3>Starter (500 Rows)</h3>
+                    <div class="price-display">$249</div>
+                    <p class="price-details">Fastest way to check system health & spot anomalies.</p>
+                    <ul class="features-list">
+                        <li>Identify growth bottlenecks, top-performing products, and 2–3 actionable KPIs.</li>
+                        <li>Max 500 Rows (Cleansing & Formatting)</li>
+                        <li>Priority Queue Access (Engine 1)</li>
+                    </ul>
+                    <a href="[STRIPE_LINK_500_30MIN]" class="urgency-cta btn-priority">30 MIN PRIORITY: $249</a>
+                    <a href="[STRIPE_LINK_500_2HR]" class="urgency-cta btn-rush">2 HOUR RUSH: $187.50</a>
+                    <a href="[STRIPE_LINK_500_24HR]" class="urgency-cta btn-standard">24 HOUR STANDARD: $125</a>
                 </div>
 
-                <div class="card" style="border-color: var(--primary-color); transform: scale(1.05);">
-                    <div class="best-value" style="background-color: var(--primary-color); color: white;">BEST VALUE & SPEED</div>
-                    <h3>Standard Tier (2,000 Rows)</h3>
-                    <p class="details">Routine weekly deep-dives or essential clean-up.</p>
-                    <div class="price">$799</div>
-                    <p class="details">**Priority SLA: 30 Minutes Guaranteed**</p>
-                    <a href="[STRIPE_LINK_2000_30MIN]" class="cta-button" style="background-color: #28a745;">BUY NOW (30 MIN)</a>
-                    <p class="details" style="margin-top: 15px;">Or **\$400** for 48-Hour Delivery</p>
+                <div class="pricing-card">
+                    <h3>Core Standard (2,000 Rows)</h3>
+                    <div class="price-display">$799</div>
+                    <p class="price-details">The essential weekly data processing package.</p>
+                    <ul class="features-list">
+                        <li>Track revenue drivers and anomalies with core KPIs.</li>
+                        <li>Max 2,000 Rows (Full Data Cleansing)</li>
+                        <li>High-Capacity Queue Access</li>
+                    </ul>
+                    <a href="[STRIPE_LINK_2000_30MIN]" class="urgency-cta btn-priority">30 MIN PRIORITY: $799</a>
+                    <a href="[STRIPE_LINK_2000_2HR]" class="urgency-cta btn-rush">2 HOUR RUSH: $599</a>
+                    <a href="[STRIPE_LINK_2000_48HR]" class="urgency-cta btn-standard">48 HOUR STANDARD: $400</a>
                 </div>
 
-                <div class="card">
-                    <h3>Mid-Volume Tier (3,000 Rows)</h3>
-                    <p class="details">The perfect stepping stone for heavier analysis.</p>
-                    <div class="price">$1,199</div>
-                    <p class="details">**Priority SLA: 2 Hours Guaranteed**</p>
-                    <a href="[STRIPE_LINK_3000_2HR]" class="cta-button">BUY NOW (2 HOUR)</a>
-                    <p class="details" style="margin-top: 15px;">Or **\$699** for 48-Hour Delivery</p>
+                <div class="pricing-card">
+                    <h3>Bulk Batch (6,000 Rows)</h3>
+                    <div class="price-display">$1,749</div>
+                    <p class="price-details">Maximum efficiency for monthly audits and large data sets.</p>
+                    <ul class="features-list">
+                        <li>Extended Parallel Run (Max Volume Discount)</li>
+                        <li>Track advanced KPIs and future trends.</li>
+                        <li>Dedicated Worker Pool Allocation</li>
+                    </ul>
+                    <a href="[STRIPE_LINK_6000_6HR]" class="urgency-cta btn-priority">6 HOUR PRIORITY: $1,749</a>
+                    <a href="[STRIPE_LINK_6000_24HR]" class="urgency-cta btn-rush">24 HOUR RUSH: $1,399</a>
+                    <a href="[STRIPE_LINK_6000_72HR]" class="urgency-cta btn-standard">72 HOUR STANDARD: $999</a>
                 </div>
-
             </div>
+            
+            <p style="margin-top: 50px; font-size: 1.2em; color: #aaa;">Need more than 6,000 rows or specialized compliance? **<a href="index.html" style="color: var(--primary-accent); text-decoration: none;">Explore Apex Data Strategic Tiers.</a>**</p>
         </section>
 
-        <footer>
-            <p>&copy; 2025 DataDash Express. Automated Intelligence by Apex Data Systems. | <a href="[PRIVACY_POLICY_LINK]" class="nav-link">Privacy</a> | <a href="[TERMS_LINK]" class="nav-link">Terms</a></p>
-        </footer>
-    </div>
-</body>
-</html>
+        <section id="about" style="text-align: center;">
+            <p style="font-size: 1.3em; color: var(--primary-accent);">**Our mission:** make data-driven decision making accessible to every business, no matter the size.</p>
+            <p style="font-size: 1.1em; color: #aaa;">We never share your data with third parties — **ever**. Your security is paramount.</p>
+            
+            <div style="max-width: 600px; margin: 30px auto; background-color: var(--card-bg); padding: 40px; border-radius: 10px;">
+                 <h3 style="color: var(--primary-accent); margin-top: 0;">Quick Inquiry</h3>
+                 <p style="color: #ccc;">Need to ask before you buy? <a href="mailto:contact@datadash.com" style="color: var
